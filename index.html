@@ -70,6 +70,7 @@
 							<div 
 								class="user b-b p-b20 flex center"
 								v-for="contact in contacts"
+								@click="setActiveChat(contact)"
 							>
 								<img class="img-user" :src="'./img/avatar' + contact.avatar + '.jpg'" alt="" />
 
@@ -88,9 +89,13 @@
 						<div class="header-70 lightgray">
 							<div class="img-io flex between">
 								<section class="flex">
-									<img class="img-user" src="./img/avatar_1.jpg" alt="" />
+									<img
+										class="img-user"
+										:src="'./img/avatar' + activeContact.avatar + '.jpg'"
+										alt=""
+									/>
 									<div>
-										<h4 class="m-t">Michele</h4>
+										<h4 class="m-t">{{activeContact.name}}</h4>
 										<span class="last-acces">Ultimo accesso alle 13.52</span>
 									</div>
 								</section>
@@ -103,45 +108,17 @@
 						</div>
 						<div class="message-container">
 							<ul class="messages">
-								<li class="sent">
-									<span class="message">Lorem ipsum dolor sit amet consectetur.</span>
-									<span class="time">16:44</span>
+								<li 
+									v-for="message in activeContact.messages"
+									:class="message.status"
+								>
+									<span class="message">{{message.message}}</span>
+									<span class="time">{{message.date}}</span>
 									<div class="chevron">
 										<i class="fa-solid fa-chevron-down"></i>
 									</div>
 								</li>
-								<li class="received">
-									<span class="message">Lorem ipsum dolor sit amet consectetur.</span>
-									<span class="time">16:44</span>
-									<div class="chevron">
-										<i class="fa-solid fa-chevron-down"></i>
-									</div>
-								</li>
-								<li class="sent">
-									<span class="message"
-										>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, a dolor
-										sequi distinctio unde doloremque et debitis quas. Odit magni alias natus totam
-										accusantium, eos voluptatum adipisci voluptas labore repellat a ipsum dolorum
-										quod reiciendis sint? Esse doloremque deleniti repudiandae. Perspiciatis
-										voluptatibus atque qui illum consectetur. Corporis nobis error cumque eos, quod
-										nihil harum repellendus sint et quia sapiente magnam explicabo ea in accusantium
-										obcaecati animi? Alias incidunt a sunt modi, dolorem magni inventore sapiente
-										rerum nobis eum, iure distinctio totam vitae, placeat ea dolore architecto rem
-										aspernatur voluptatibus dignissimos sit corporis quibusdam commodi. Deserunt
-										quasi sed quam dolorem doloribus.ù</span
-									>
-									<span class="time">16:44</span>
-									<div class="chevron">
-										<i class="fa-solid fa-chevron-down"></i>
-									</div>
-								</li>
-								<li class="received">
-									<span class="message">ciao</span>
-									<span class="time">16:44</span>
-									<div class="chevron">
-										<i class="fa-solid fa-chevron-down"></i>
-									</div>
-								</li>
+								
 							</ul>
 						</div>
 						<footer class="flex center ">

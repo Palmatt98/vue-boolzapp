@@ -178,8 +178,15 @@ Vue.createApp({
 					],
 				},
 			],
+			activeContact: null,
 		};
 	},
-}).mount("#app")
-
-
+	created(){
+		this.activeContact = this.contacts[0];
+	},
+	methods: {
+		setActiveChat: function (contact) {
+			this.activeContact = contact;
+		},
+	},
+}).mount("#app");
