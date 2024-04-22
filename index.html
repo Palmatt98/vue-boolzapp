@@ -15,9 +15,11 @@
 			href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
 			rel="stylesheet"
 		/>
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+		
 	</head>
 	<body>
-		<div class="wrapper">
+		<div id="app" class="wrapper">
 			<div class="app-bg">
 				<div class="header-bg"></div>
 				<div class="linear-gradient-bg"></div>
@@ -65,78 +67,21 @@
 
 						</div>
 						<div class="users">
-							<div class="user b-b p-b20 flex center">
-								<img class="img-user" src="./img/avatar_1.jpg" alt="" />
+							<div 
+								class="user b-b p-b20 flex center"
+								v-for="contact in contacts"
+							>
+								<img class="img-user" :src="'./img/avatar' + contact.avatar + '.jpg'" alt="" />
 
 								<div class="preview-user">
 									<section>
-										<h4>Antonio</h4>
+										<h4>{{contact.name}}</h4>
 										<span>sta scrivendo...</span>
 									</section>
 								</div>
 								<div class="time"></div>
 							</div>
-							<div class="user b-b p-b20 flex center">
-								<img class="img-user" src="./img/avatar_2.jpg" alt="" />
-
-								<div class="preview-user">
-									<section>
-										<h4>luigi</h4>
-										<span>cercando di...</span>
-									</section>
-								</div>
-								<div class="time"></div>
-							</div>
-							<div class="user b-b p-b20 flex center">
-								<img class="img-user" src="./img/avatar_3.jpg" alt="" />
-								<div class="preview-user">
-									<section>
-										<h4>Antonio</h4>
-										<span>ok...</span>
-									</section>
-								</div>
-								<div class="time"></div>
-							</div>
-							<div class="user b-b p-b20 flex center">
-								<img class="img-user" src="./img/avatar_4.jpg" alt="" />
-								<div class="preview-user">
-									<section>
-										<h4>Antonio</h4>
-										<span>Ci veidamo al...</span>
-									</section>
-								</div>
-								<div class="time"></div>
-							</div>
-							<div class="user b-b p-b20 flex center">
-								<img class="img-user" src="./img/avatar_5.jpg" alt="" />
-								<div class="preview-user">
-									<section>
-										<h4>Antonio</h4>
-										<span>Credo che...</span>
-									</section>
-								</div>
-								<div class="time"></div>
-							</div>
-							<div class="user b-b p-b20 flex center">
-								<img class="img-user" src="./img/avatar_6.jpg" alt="" />
-								<div class="preview-user">
-									<section>
-										<h4>Antonio</h4>
-										<span>sta scrivendo...</span>
-									</section>
-								</div>
-								<div class="time"></div>
-							</div>
-							<div class="user b-b p-b20 flex center">
-								<img class="img-user" src="./img/avatar_7.jpg" alt="" />
-								<div class="preview-user">
-									<section>
-										<h4>Antonio</h4>
-										<span>sta scrivendo...</span>
-									</section>
-								</div>
-								<div class="time"></div>
-							</div>
+							
 						</div>
 					</div>
 					<div class="col-70">
@@ -216,5 +161,6 @@
 				</div>
 			</div>
 		</div>
+		<script src="./js/script.js"></script>
 	</body>
 </html>
