@@ -16,7 +16,6 @@
 			rel="stylesheet"
 		/>
 		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-		
 	</head>
 	<body>
 		<div id="app" class="wrapper">
@@ -60,14 +59,15 @@
 								<i class="fa-solid fa-magnifying-glass"></i>
 							</span>
 							<div class=" ">
-								<input class="search-input " type="text" placeholder="  Cerca o inizia una vuova chat">
+								<input
+									class="search-input"
+									type="text"
+									placeholder="  Cerca o inizia una vuova chat"
+								/>
 							</div>
-
-							
-
 						</div>
 						<div class="users">
-							<div 
+							<div
 								class="user b-b p-b20 flex center"
 								v-for="contact in contacts"
 								@click="setActiveChat(contact)"
@@ -82,7 +82,6 @@
 								</div>
 								<div class="time"></div>
 							</div>
-							
 						</div>
 					</div>
 					<div class="col-70">
@@ -108,26 +107,28 @@
 						</div>
 						<div class="message-container">
 							<ul class="messages">
-								<li 
-									v-for="message in activeContact.messages"
-									:class="message.status"
-								>
+								<li v-for="message in activeContact.messages" :class="message.status">
 									<span class="message">{{message.message}}</span>
 									<span class="time">{{message.date}}</span>
 									<div class="chevron">
 										<i class="fa-solid fa-chevron-down"></i>
 									</div>
 								</li>
-								
 							</ul>
 						</div>
-						<footer class="flex center ">
+						<footer class="flex center">
 							<div class="icon-footer flex between center">
 								<div>
 									<i class="fa-regular fa-face-smile"></i>
 								</div>
 
-								<input class="scrivi-messaggio" type="text" placeholder="Invia un messaggio..." />
+								<input
+									v-model="messageToSend"
+									@keyup.enter="sendMessage"
+									class="scrivi-messaggio"
+									type="text"
+									placeholder="Invia un messaggio..."
+								/>
 
 								<div>
 									<i class="fa-solid fa-microphone"></i>

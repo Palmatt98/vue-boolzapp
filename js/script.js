@@ -179,14 +179,35 @@ Vue.createApp({
 				},
 			],
 			activeContact: null,
+			messageToSend: null,
 		};
 	},
-	created(){
+	created() {
 		this.activeContact = this.contacts[0];
 	},
 	methods: {
 		setActiveChat: function (contact) {
 			this.activeContact = contact;
+		},
+		sendMessage: function () {
+			if (this.messageToSend !== null && this.messageToSend !== "") {
+				//TODO creare oggetto da pushare nel array messages
+				const newMessage = {
+					date: "10/01/2020 15:50:00",
+					message: this.messageToSend,
+					status: "sent",
+				};
+				this.activeContact.messages.push(newMessage);
+				setTimeout(() => {
+					const newMessageReceived = {
+						date: "10/01/2020 15:50:00",
+						message: "ok",
+						status: "received",
+					};
+					this.activeContact.messages.push(newMessageReceived);
+				}, 1000);
+				this.messageToSend = "";
+			}
 		},
 	},
 }).mount("#app");
