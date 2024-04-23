@@ -60,6 +60,7 @@
 							</span>
 							<div class=" ">
 								<input
+									v-model="searchText"
 									class="search-input"
 									type="text"
 									placeholder="  Cerca o inizia una vuova chat"
@@ -69,8 +70,8 @@
 						<div class="users">
 							<div
 								class="user b-b p-b20 flex center"
-								v-for="contact in contacts"
-								@click="setActiveChat(contact)"
+								v-for="contact in getFilteredContacts()"
+								@click="setActiveChat(contact); resetDropdownMenu()"
 							>
 								<img class="img-user" :src="'./img/avatar' + contact.avatar + '.jpg'" alt="" />
 
@@ -107,11 +108,22 @@
 						</div>
 						<div class="message-container">
 							<ul class="messages">
-								<li v-for="message in activeContact.messages" :class="message.status">
+								<li v-for="(message, index) in activeContact.messages" :class="message.status">
 									<span class="message">{{message.message}}</span>
 									<span class="time">{{message.date}}</span>
-									<div class="chevron">
+									<div 
+										class="chevron"
+										@click="toggleDropdownMenu(index)"
+									>
 										<i class="fa-solid fa-chevron-down"></i>
+										<div 
+											class="dropdown-menu" 
+											v-if="index === messageClickedIndex"
+											
+										>
+											<span>Message info</span>
+											<span @click="deleteMessage(index)">Delete message</span>
+										</div>
 									</div>
 								</li>
 							</ul>
@@ -140,5 +152,6 @@
 			</div>
 		</div>
 		<script src="./js/script.js"></script>
+		<script src="./ts/script.ts"></script>
 	</body>
 </html>

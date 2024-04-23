@@ -12,6 +12,10 @@
 // “enter” il testo viene aggiunto al thread sopra, come messaggio verde
 // ● Risposta dall’interlocutore: ad ogni inserimento di un messaggio, l’utente riceverà
 // un “ok” come risposta, che apparirà dopo 1 secondo.
+// Milestone 4
+// ● Ricerca utenti: scrivendo qualcosa nell’input a sinistra, vengono visualizzati solo i
+// contatti il cui nome contiene le lettere inserite (es, Marco, Matteo Martina -> Scrivo
+// “mar” rimangono solo Marco e Martina)
 Vue.createApp({
 	data() {
 		return {
@@ -180,6 +184,8 @@ Vue.createApp({
 			],
 			activeContact: null,
 			messageToSend: null,
+			searchText: "",
+			messageClickedIndex: -1,
 		};
 	},
 	created() {
@@ -209,5 +215,29 @@ Vue.createApp({
 				this.messageToSend = "";
 			}
 		},
+		getFilteredContacts: function () {
+			//prima lo filtra
+			//poi lo ritorna
+			return this.contacts.filter((contact) => {
+				if (contact.name.toLowerCase().includes(this.searchText.toLowerCase())) {
+					return true;
+				} else {
+					return false;
+				}
+			});
+		},
+		toggleDropdownMenu: function (index) {
+			if (this.messageClickedIndex === -1) {
+				this.messageClickedIndex = index;
+			} else {
+				this.messageClickedIndex = -1;
+			}
+		},
+		resetDropdownMenu: function () {
+			this.messageClickedIndex = -1;
+		},
+		deleteMessage: function(index){
+			this.activeContact.messages.splice(index, 1)
+		}
 	},
 }).mount("#app");
